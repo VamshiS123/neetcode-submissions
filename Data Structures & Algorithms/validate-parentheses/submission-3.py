@@ -1,23 +1,15 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        map = {}
-        map[")"] = "("
-        map["}"] = "{"
-        map["]"] = "["
-
+        pair = {')' : '(', '}' : '{' , ']' : '[' }
         stack = []
 
-        for bracket in s:
-            if bracket in map: 
-                if not stack or stack[-1] != map[bracket]:
+        for char in s:
+            if char in pair:
+                if not stack or stack[-1] != pair[char]:
                     return False
                 stack.pop()
-            else:
-                stack.append(bracket)
-        
-        if not stack:
-            return True
-        else:
-            return False
-
             
+            else:
+                stack.append(char)
+
+        return not stack

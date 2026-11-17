@@ -1,24 +1,25 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # loop through the whole strs
-        # loop through each of the strings
-        # count each of the things in an array
-        # make it into a tuple
-        # put all of it into a hashmap and use the tuple as the key
-        final = {}
+
+        groupofwords = {}
+
         for string in strs:
 
-            array = [0]*26
+            arr = [0] * 26
+            for letter in string:
+                x = ord(letter) - ord('a')
+                arr[x] += 1
             
-            for char in string:
-                idx = ord(char) - ord('a')
-                array[idx] += 1
             
-            t = tuple(array)
+            t = tuple(arr)
 
-            if t not in final:
-                final[t] = []
+            if t not in groupofwords:
+                groupofwords[t] = []
             
-            final[t].append(string)
-        
-        return list(final.values())
+            groupofwords[t].append(string)
+
+        return list(groupofwords.values())
+
+
+
+            
